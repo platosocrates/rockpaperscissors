@@ -1,0 +1,85 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+body {
+    background-color: #d4e5ea;
+}
+
+
+
+  /* Header */
+h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #a597ab;
+}
+
+header p {
+    text-align: center;
+    color: #a597ab;
+    border: 2px groove #b1c0d4;
+    font-style: italic;
+    width: 50%;
+    margin: auto auto 20px;
+}
+
+    /* Scoreboard */
+#scoreboard {
+    text-align: center;
+    background-color: #b1c0d4;
+    padding: 25px;
+    margin: auto;
+    display: block;
+    width: 40%;
+    border: 2px groove #a597ab;
+}
+
+.player {
+    width: 200px;
+    display: inline-block;
+    border: 1px groove #a4a0ba;
+    background-color: #d4e5ea;
+    color: #a597ab;
+    font-weight: bold;
+    margin: 10px 10px;
+}
+
+.player h4 {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.score-box {
+    font-style: italic;
+    padding-bottom: 5px;
+}
+
+    /* buttonbox */
+#buttonbox {
+    background-color: #b1c0d4;
+    width: 50%;
+    margin: 20px auto 0;
+    padding: 20px;
+    text-align: center;
+    border: 2px groove #a597ab;
+}
+
+button {
+    width: 100px;
+    padding: 3px 0px;
+    background-color: #a4a0ba;
+    color: #d4e5ea;
+}
+
+#scoreboard button {
+    display: block;
+    margin: 5px auto 0px;
+}
+
+#buttonbox button {
+    margin: 5px 10px;
+}

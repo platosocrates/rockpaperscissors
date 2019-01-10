@@ -1,63 +1,79 @@
-let playerWins = 0;
+let userWins = 0;
 let computerWins = 0;
+
+const buttons = document.querySelectorAll(".btn");
+const newGame = document.querySelector("#newgame");
+const userScoreboard = document.querySelector("#player-score");
+const computerScoreboard = document.querySelector("#computer-score");
+
+// Sets scoreboard to update score based on wins
+function updateScoreboard() {
+  userScoreboard.textContent = userWins;
+  computerScoreboard.textContent = computerWins;
+}
+
+updateScoreboard();
+
+// Function resets scoreboard
+function resetScore() {
+  computerWins = 0;
+  userWins = 0;
+}
 
 // Function Returns Computer's Choice
 function computerPlay() {
   var random = Math.floor((Math.random() * 3) + 1);
   if(random === 1) {
-    return("rock");
+    return("r");
   } else if(random === 2) {
-    return("paper");
+    return("p");
   } else {
-    return("scissors");
+    return("s");
   }
 }
 
-// Function Returns User Choice
-function userPlay() {
-  let userChoiceCase = prompt("Enter Rock, Paper, or Scissors");
-  let userChoice = userChoiceCase.toLowerCase();
-
-  if (userChoice == "rock" || userChoice == "paper" || userChoice == "scissors") {
-    return userChoice;
-  } else if (userChoice ===null || userChoice ==="") {
-    alert ("You need to enter rock, paper, or scissors!")
-    userPlay();
+// Function plays one round of RPS
+function playRound (user, computer) {
+  if (user == "r" && computer == "s" || user == "p" && computer == "r" || user == "s" && computer == "p") {
+    alert("User win");
+    userWins++;
+  } else if (computer == "r" && user == "s" || computer == "p" && user == "r" || computer == "s" && user == "p") {
+    alert("Computer win");
+    computerWins++
   } else {
-    alert ("Enter rock, paper, or scissors");
-    userPlay();
+    alert("Round tie, try again")
+  }
+  updateScoreboard();
+}
+
+function playGame (user, computer) {
+  playRound (user, computer);
+  if (userWins == 3) {
+    alert("You win the game! Congratulations, you're luckier than a computer!")
+    resetScore();
+    updateScoreboard();
+  }
+  else if (computerWins == 3) {
+    alert("The computer wins the game!")
+    resetScore();
+    updateScoreboard();
   }
 }
 
+// Plays round of RPS on button click, taking button clicked as userChoice
 
-function playRound() {
-  let computerSelection = computerPlay();
-  let playerSelection = userPlay();
-  if (computerSelection == "rock" && playerSelection == "rock" || computerSelection == "scissors" && playerSelection == "scissors" || computerSelection == "paper" && playerSelection == "paper") {
-    return "Tie!";
-  }
-    else if (computerSelection == "rock" && playerSelection == "scissors" || computerSelection == "paper" && playerSelection == "rock" || computerSelection == "scissors" && playerSelection == "paper") {
-      computerWins++;
-      return "Computer Wins!";
-    }
-    else {
-      playerWins++;
-      return "User Wins!";
-    }
-}
+buttons.forEach((button => {
+  button.addEventListener('click', (e) => {
+    let userChoice = button.id;
+    let computerChoice = computerPlay();
+    playGame(userChoice, computerChoice);
+  });
+}));
 
-function playGame() {
-
-  for (let i = 0; i < 5; i++) {
-    playRound();
-    console.log("Round End! You: " + playerWins + " Computer Wins: " + computerWins);
-  }
-  if (playerWins > computerWins) {
-    return "You win the game, congratulations! You are very skilled!";
-  }
-  else {
-    return "The computer wins the game, you bad.";
-  }
-}
+newGame.addEventListener('click', () => {
+  resetScore();
+  updateScoreboard();
+  alert("Score has been reset");
+});
 
 
