@@ -48,12 +48,12 @@ function playRound (user, computer) {
 
 function playGame (user, computer) {
   playRound (user, computer);
-  if (userWins == 3) {
+  if (userWins == 5) {
     alert("You win the game! Congratulations, you're luckier than a computer!")
     resetScore();
     updateScoreboard();
   }
-  else if (computerWins == 3) {
+  else if (computerWins == 5) {
     alert("The computer wins the game!")
     resetScore();
     updateScoreboard();
